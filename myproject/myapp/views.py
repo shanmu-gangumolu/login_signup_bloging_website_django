@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout 
-from .forms import SignupForm, LoginForm
 
-from .forms import BlogForm
+from .forms import SignupForm, LoginForm, BlogForm
+
 from .models import Blog
 
 def index(request):
@@ -50,6 +50,6 @@ def create_blog(request):
         form = BlogForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('create_blog')
+            return redirect('create_blog') 
     blogs = Blog.objects.all()
     return render(request, 'create_blog.html', {'form': form, 'blogs': blogs}) 
